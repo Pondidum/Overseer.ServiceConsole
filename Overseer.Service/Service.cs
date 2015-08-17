@@ -14,7 +14,11 @@ namespace Overseer.Service
 
 		public void StartConsole()
 		{
+			Console.WriteLine("Press any key to exit...");
 			OnStart(new string[] { });
+
+			Console.ReadKey();
+			OnStop();
 		}
 
 		protected override void OnStart(string[] args)
