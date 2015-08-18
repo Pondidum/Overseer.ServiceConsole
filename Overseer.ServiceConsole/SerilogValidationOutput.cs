@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Serilog;
 using Serilog.Context;
 using Serilog.Events;
 
-namespace Overseer.Service
+namespace Overseer.ServiceConsole
 {
 	public class SerilogValidationOutput : IValidationOutput
 	{

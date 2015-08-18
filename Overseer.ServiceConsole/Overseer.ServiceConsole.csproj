@@ -7,8 +7,8 @@
     <ProjectGuid>{F65F08F3-2799-44BA-8192-5CAF8C98F3CC}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Overseer.Service</RootNamespace>
-    <AssemblyName>Overseer.Service</AssemblyName>
+    <RootNamespace>Overseer.ServiceConsole</RootNamespace>
+    <AssemblyName>Overseer.ServiceConsole</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>Overseer.Service.Program</StartupObject>
+    <StartupObject>Overseer.ServiceConsole.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.ServiceProcess;
 using Overseer.Converters;
@@ -7,7 +6,7 @@ using Overseer.Readers;
 using Overseer.Sources;
 using Serilog;
 
-namespace Overseer.Service
+namespace Overseer.ServiceConsole
 {
 	public partial class Service : ServiceBase
 	{

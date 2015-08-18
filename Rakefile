@@ -10,7 +10,7 @@ ci_run = ENV['APPVEYOR'] || false
 tool_nuget = 'tools/nuget/nuget.exe'
 tool_xunit = 'tools/xunit/xunit.console.exe'
 
-project_name = 'Overseer.Service'
+project_name = 'Overseer.ServiceConsole'
 project_version = read_semver
 
 project_output = 'build/bin'
@@ -68,7 +68,7 @@ nugets_pack :pack do |n|
     m.project_url = "https://github.com/pondidum/#{project_name}"
     m.license_url = "https://github.com/Pondidum/#{project_name}/blob/master/LICENSE.txt"
     m.version = project_version
-    m.tags = 'rabbitmq events domainevents ddd microservice windows service'
+    m.tags = 'rabbitmq events domainevents ddd microservice windows service console'
   end
 
 end
