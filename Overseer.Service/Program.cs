@@ -17,7 +17,7 @@ namespace Overseer.Service
 		{
 			var service = new Service();
 
-			if (Debugger.IsAttached)
+			if (Environment.UserInteractive)
 			{
 				service.StartConsole();
 			}
