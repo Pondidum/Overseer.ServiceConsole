@@ -47,7 +47,73 @@ protected override void OnStart(string[] args)
 }
 ```
 
+### Validating Messages
+
+Overseer has three Validation Sources built in: `InMemory`, `File` and `Url`.  There is also a `CachingValidatorSource`, which can decorate any other `IValidatorSource` to provide cached access.
+
+The three validation sources all build up `JsonSchemaValidator` objects to do the actual validation, which use a json object containing two [JsonSchema][json-schema]s - one for the headers of the messages and one for the body of the messages.
+
+For example, if we had the following object:
+
+```csharp
+public class PersonExactMatch
+{
+	public Guid ID { get; set; }
+	public string Name { get; set; }
+	public DateTime Birthday { get; set; }
+	public IEnumerable<Address> Addresses { get; set; }
+}
+```
+
+And we wanted to validate that:
+* The message itself had a `CorrelationId` specified.
+* The object has an `ID`.
+* The object has a `Name`.
+* The object has at least one `Address`, which has a `Line1` and `PostCode`.
+
+The validator json would look like this:
+
+```json
+{
+    "type": "PersonExactMatch",
+    "header": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {
+            "CorrelationId": { "type": "string" }
+        },
+        "required": [ "CorrelationId" ]
+    },
+    "body": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+
+        "definitions": {
+            "address": {
+                "type": "object",
+                "properties": {
+                    "Line1": { "type": "string" },
+                    "PostCode": { "type": "string" }
+                },
+                "required": [ "PostCode" ]
+            }
+        },
+
+        "type": "object",
+        "properties": {
+            "ID": { "type": "string" },
+            "Name": { "type": "string" },
+            "Addresses": { "type": "array", "items": { "$ref": "#/definitions/address" } }
+        },
+        "required": [ "ID", "Name", "Addresses" ]
+    }
+}
+```
+The `type` key is the Type Name of the message to validate, the `header` key is the JsonSchema to validate the message headers, and the `body` key is the JsonSchema to validate the body.
+
+### Output Results
+
 
 
 [overseer]: https://github.com/pondidum/overseer
 [overseer-rabbit]: https://github.com/pondidum/overseer.rabbitmq
+[json-schema]: https://json-schema.org
