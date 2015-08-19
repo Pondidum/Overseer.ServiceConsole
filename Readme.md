@@ -21,12 +21,13 @@ protected override void OnStart(string[] args)
 }
 ```
 
-For example, to configure this to run against a RabbitMQ server:
+### Reading Messages
 
-> PM> Install-Package Overseer.RabbitMQ
+For example, if you wish to read from a RabbitMQ server, all you need to do is install the [Overseer.RabbitMQ][overseer-rabbit] package, and then modify the `OnStart` method to use the `RabbitMessageReader` and `RabbitMessageConverter`:
 
-Then modify the `OnStart` method:
-
+```powershell
+PM> Install-Package Overseer.RabbitMQ
+```
 ```csharp
 protected override void OnStart(string[] args)
 {
@@ -48,4 +49,5 @@ protected override void OnStart(string[] args)
 
 
 
-[overseer]: http://github.com/pondidum/overseer
+[overseer]: https://github.com/pondidum/overseer
+[overseer-rabbit]: https://github.com/pondidum/overseer.rabbitmq
