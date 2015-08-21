@@ -112,7 +112,24 @@ The `type` key is the Type Name of the message to validate, the `header` key is 
 
 ### Output Results
 
+By default, `Overseer.ServiceConsole` outputs the results to the console and to log files, using `Serilog` via the `SerilogValidationOutput` object.
 
+The actual Serilog configuration is done in the `InitializeLogging()` method, and can be customised to log to other sinks such as `ElasticSearch`.  The `SerilogValidationOutput` itself enriches the logger with each `ValidationResult` under a property called `ValidationResult` so that advanced logging sinks can index the entire result too.
+
+```csharp
+private void InitializeLogging()
+{
+	var logs = Path.Combine(_baseDirectory, "logs");
+
+	Directory.CreateDirectory(logs);
+
+	Log.Logger = new LoggerConfiguration()
+		.MinimumLevel.Debug()
+		.WriteTo.ColoredConsole()
+		.WriteTo.RollingFile(Path.Combine(logs, "{Date}.log"))
+		.CreateLogger();
+}
+```
 
 [overseer]: https://github.com/pondidum/overseer
 [overseer-rabbit]: https://github.com/pondidum/overseer.rabbitmq
