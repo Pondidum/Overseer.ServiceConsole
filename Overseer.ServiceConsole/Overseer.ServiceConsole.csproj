@@ -44,7 +44,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Overseer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Overseer.2.1.2\lib\net40\Overseer.dll</HintPath>
+      <HintPath>..\packages\Overseer.4.0.0\lib\net40\Overseer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Serilog, Version=1.5.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">

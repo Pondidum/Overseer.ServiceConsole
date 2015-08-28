@@ -24,26 +24,21 @@ namespace Overseer.ServiceConsole
 
 			using (LogContext.PushProperty("ValidationResult", result))
 			{
-				var messages = BuildMessageLine(result);
+				var messages = new List<string>();
+				BuildMessageLine(messages, result.Children);
 
 				Log.Write(level, "{message}", string.Join(", ", messages));
 			}
 
 		}
 
-		private IEnumerable<string> BuildMessageLine(ValidationResult result)
+		private void  BuildMessageLine(List<string> parts, IEnumerable<ValidationNode> nodes)
 		{
-			var node = result as ValidationResultNode;
-
-			if (node == null)
+			foreach (var node in nodes)
 			{
-				return new[]
-				{
-					string.Format("[{0}] {1}", result.Status, result.Message)	
-				};
+				parts.Add($"[{node.Status}]: {node.ValidationMessage}");
+				BuildMessageLine(parts, node.Children);
 			}
-
-			return node.Results.SelectMany(BuildMessageLine);
 		}
 
 	}
